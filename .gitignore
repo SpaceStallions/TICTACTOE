@@ -1,6 +1,10 @@
 target
 *.class
 
+# Ignore IntelliJ IDEA config files
+.idea/*
+TICTACTOE.iml
+
 # Java Package Files #
 *.jar
 *.war
