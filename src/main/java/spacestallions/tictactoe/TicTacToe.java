@@ -1,6 +1,9 @@
 
 package spacestallions.tictactoe;
 
+import static spark.Spark.*;
+import spark.*;
+
 public class TicTacToe
 {
 	public String greet(){
@@ -8,8 +11,13 @@ public class TicTacToe
 	}
 	public static void main (String[] args)
 	{
-		System.out.println ("Template class");
-		TicTacToe str = new TicTacToe();
-		System.out.println(str.greet());
+		staticFileLocation("/public");     
+        setPort(Integer.valueOf(System.getenv("PORT")));
+        get(new Route("/") {
+        	@Override
+        	public Object handle(Request request, Response response) {
+            	return "SpaceStallions TicTacToe";
+         	}
+        });
 	}
 }
