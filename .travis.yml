@@ -1,29 +1,28 @@
-#language is java
 language: java
-
-#tell travis which version of jdk to use
-jdk: 
- - openjdk7
- - oraclejdk7
- 
-#tell travis to build master branch
+jdk:
+- openjdk7
+- oraclejdk7
 branches:
- only:
-  - "master"
-
-script: mvn clean package compile test 
-
-#configure notifications
+  only:
+  - master
+script: mvn clean package compile test
 notifications:
- email:
-  recepients:
-   - ghardard@gmail.com
-   - emil@8bit.is
-   - johannesh10@ru.is
-   - fannarl11@ru.is
-   - bjossialf@gmail.com
-   - arnarjonasson@gmail.com
-   - binnih@gmail.com
-   - gislig@gmail.com
-  on_success: change
-  on_failure: always  
+  email:
+    recepients:
+    - ghardard@gmail.com
+    - emil@8bit.is
+    - johannesh10@ru.is
+    - fannarl11@ru.is
+    - bjossialf@gmail.com
+    - arnarjonasson@gmail.com
+    - binnih@gmail.com
+    - gislig@gmail.com
+    on_success: change
+    on_failure: always
+deploy:
+  provider: heroku
+  api_key:
+    secure: RCFqAPCIh2nUVNI2v/es2QKLuXtQzJlVMWceV/oefecGfPRRIOB8nxk5FLgUwSdzXrm6gkOXkBhWhWtQpdmo1Eb9nBGp1Eaq9z0pm2j9E80UIejh04d+Jw/D6fuWCfx0g7Psj0kcU/usQrC4W+c2EzAT5XwKEzrY5n5vKbaxeAM=
+  app: spacestallions-staging
+  on:
+    repo: SpaceStallions/TICTACTOE
