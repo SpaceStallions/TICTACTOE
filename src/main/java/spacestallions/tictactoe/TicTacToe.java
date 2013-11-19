@@ -22,7 +22,7 @@ public class TicTacToe
 			}
 		});
 
-		get(new Route("/") {
+		post(new Route("/") {
 			@Override
 			public Object handle(Request request, Response response) {
 				return request.body();
