@@ -19,5 +19,12 @@ public class TicTacToe
             	return "SpaceStallions TicTacToe";
          	}
         });
+		
+		get(new Route("/") {
+        	@Override
+        	public Object handle(Request request, Response response) {
+            	return request.body();
+         	}
+        });
 	}
 }
