@@ -45,6 +45,7 @@
 			{
 				var cellId = $(this).attr ("id").charAt (5);
                 this.innerText = "X";
+                $(this).css('color', 'blue');
 				'alert ("you clicked cell number " + cellId);'
 			});
 		});
