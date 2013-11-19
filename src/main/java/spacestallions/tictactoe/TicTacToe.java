@@ -15,14 +15,14 @@ public class TicTacToe
 		staticFileLocation("/public");     
 		setPort(Integer.valueOf(System.getenv("PORT")));
 
-		get(new Route("/") {
+		get(new Route("/gettest") {
 			@Override
 			public Object handle(Request request, Response response) {
 				return "SpaceStallions TicTacToe";
 			}
 		});
 
-		post(new Route("/") {
+		post(new Route("/addtest") {
 			@Override
 			public Object handle(Request request, Response response) {
 				return request.body();
