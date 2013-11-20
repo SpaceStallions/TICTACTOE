@@ -17,7 +17,7 @@
 		<div id="board">
 			<table>
 				<tr id="row1">
-					<td class="square" id="cell-1"></td>
+					<td class="square" id="cell-1">X</td>
 					<td class="square v" id="cell-2"></td>
 					<td class="square" id="cell-3"></td>
 				</tr>
@@ -34,37 +34,49 @@
 			</table>
 		</div>
 
-        <br>
-        <br>
-        <input id="btnReset" type="submit" value="New game"/>
+		<br>
+		<br>
+		<input id="btnReset" type="submit" value="New game"/>
 
 		<script type="text/javascript">
 		$(document).ready (function ( )
 		{
+			var gameState = '000000000';
+			var currentPlayer = 1;
+
 			$("table tr td").click (function ( )
 			{
 				var cellId = $(this).attr ("id").charAt (5);
-                this.innerText = "X";
-                $(this).css('color', 'blue');
-				'alert ("you clicked cell number " + cellId);'
+
+				$.ajax(
+				{
+					type: 'get',
+					url: '/clickcell',
+					data: 'currstate=' + gameState + '&player=' + currentPlayer + '&cell=' + cellId
+				}).done (function (returnData)
+				{
+					var data = JSON.parse (returnData);
+					alert ('success - returned a javascript object:\nplayer: ' + data.player + '\nvalid: ' + data.valid + '\nendGame: ' + data.endGame);
+				}).fail (function (err)
+				{
+					alert ('failure - returned ' + err);
+				});
 			});
 		});
 
-
-        $(document).ready(function() {
-            $("#btnReset").click(function(){
-                $('#cell-1').html('');
-                $('#cell-2').html('');
-                $('#cell-3').html('');
-                $('#cell-4').html('');
-                $('#cell-5').html('');
-                $('#cell-6').html('');
-                $('#cell-7').html('');
-                $('#cell-8').html('');
-                $('#cell-9').html('');
-                ;
-            });
-        });
+		$(document).ready(function(){
+			$("#btnReset").click(function(){
+				$('#cell-1').html('');
+				$('#cell-2').html('');
+				$('#cell-3').html('');
+				$('#cell-4').html('');
+				$('#cell-5').html('');
+				$('#cell-6').html('');
+				$('#cell-7').html('');
+				$('#cell-8').html('');
+				$('#cell-9').html('');
+			});
+		});
 		</script>
 	</body>
 </html>
