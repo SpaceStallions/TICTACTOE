@@ -1,0 +1,25 @@
+
+TODO: skrifa eitthvað "aðeins" formlegra...
+
+Dagur í lífi músarsmells á reit á mylluborði
+
+Hjá client:
+Notandi opnar index.html
+Vafrinn, með jQuery, bindur click() fall við alla 9 reitina á mylluborðinu
+Notandi smellir á einn af 9 reitunum
+Þá fer click() fallið í gang client-side
+id attribute reitsins sem smellt var á er afritað í breytu cellId (cellId getur verið frá 1 upp í 9)
+Búið er til AJAX kall á /clickcell með gögnum um núverandi stöðu leiksins
+Dæmi: localhost:4567/clickcell?state=000000000&player=1&cell=1
+Sérhvert 0 í state strengnum merkir auðan reit, 1 merkir leikmaður 1 og 2 merkir leikmaður 2, player merkir þann leikmann sem smellti á reitinn, og cell merkir þann reit sem smellt var á
+
+Fer yfir á server (Java forritið):
+Ef server forritið er að hlusta á porti 4567 þá mun það fá þessi HTTP skilaboð og kalla á /clickcell route fallið
+   (Ef server forritið er ekki í gangi þá mun AJAX fyrirspurnin kalla á fail() fallið)
+Svo er kallað á static fallið clickCell úr /clickcell route fallinu með 3 færibreytum sem lýsa stöðu leiksins
+clickCell() er entry point á server-side lógíkinni fyrir leikinn, þar er athugað hvort notandinn hafi smellt á reit sem er auður, athugað hvort komin er upp vinningsstaða eða jafntefli og svissað á milli leikmanna
+clickCell() að lokum skilar JSON streng sem inniheldur þær upplýsingar sem clientinn þarf að vita til að uppfæra leikinn client-side
+
+Aftur til clients:
+done() fallið í AJAX kallinu er virkjað með JSON strenginn sem viðfang
+Það greip JSON strenginn og parserar hann yfir í javascript hlut sem svo er hægt að nota til að uppfæra stöðu leiksins

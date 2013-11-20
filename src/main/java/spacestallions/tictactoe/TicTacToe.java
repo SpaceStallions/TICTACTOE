@@ -38,7 +38,7 @@ public class TicTacToe
 
 		// This route is called through AJAX when a player clicks a cell in the game board
 		// Returns a json string back to the done() function in the javascript part of index.html
-		get(new Route ("/clickcell")
+		get (new Route ("/clickcell")
 		{
 			@Override
 			public Object handle (Request req, Response res)

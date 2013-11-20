@@ -48,11 +48,11 @@
 			{
 				var cellId = $(this).attr ("id").charAt (5);
 
-				$.ajax(
+				$.ajax (
 				{
 					type: 'get',
 					url: '/clickcell',
-					data: 'currstate=' + gameState + '&player=' + currentPlayer + '&cell=' + cellId
+					data: 'state=' + gameState + '&player=' + currentPlayer + '&cell=' + cellId
 				}).done (function (returnData)
 				{
 					var data = JSON.parse (returnData);
