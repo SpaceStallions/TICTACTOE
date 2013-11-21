@@ -6,6 +6,8 @@ import spark.*;
 
 public class TicTacToe
 {
+	// Switches player between X and O
+	// If input is X, O is returned, and if input is O, X is returned
 	public static char switchPlayer (char currentPlayer)
 	{
 		if (currentPlayer == 'X')
@@ -61,20 +63,15 @@ public class TicTacToe
 		return json;
 	}
 
-	public String greet() {
-		return "Welcome to TicTacToe!";
-	}
-
 	public static void main (String[] args)
 	{
-		staticFileLocation("/public");
+		staticFileLocation ("/public");
 
 		// The port that we should run on can be set into an environment variable
 		// Look for that variable and default to 8080 if it isn't there.
 		String webPort =  System.getenv("PORT");
-		if (webPort == null || webPort.isEmpty()){
+		if (webPort == null || webPort.isEmpty())
 			webPort = "4567";
-		}
 
 		setPort(Integer.valueOf(webPort));
 
@@ -90,20 +87,6 @@ public class TicTacToe
 				int cellNumber = Integer.valueOf (req.queryParams ("cell"));
 
 				return clickCell (gameState, player, cellNumber);
-			}
-		});
-
-		get(new Route("/gettest") {
-			@Override
-			public Object handle(Request request, Response response) {
-				return "SpaceStallions TicTacToe";
-			}
-		});
-
-		post(new Route("/addtest") {
-			@Override
-			public Object handle(Request request, Response response) {
-				return request.body();
 			}
 		});
 	}
