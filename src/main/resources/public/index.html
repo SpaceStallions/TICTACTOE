@@ -18,7 +18,7 @@
 			<div id="board">
 				<table>
 					<tr id="row1">
-						<td class="square" id="cell-1">X</td>
+						<td class="square" id="cell-1"></td>
 						<td class="square v" id="cell-2"></td>
 						<td class="square" id="cell-3"></td>
 					</tr>
@@ -43,40 +43,65 @@
 		<script type="text/javascript">
 		$(document).ready (function ( )
 		{
-			var gameState = '000000000';
-			var currentPlayer = 1;
+			var gameState = ['0', '0', '0', '0', '0', '0', '0', '0', '0'];
+			var currentPlayer = 'X';
+			var gameEnded = false;
 
 			$("table tr td").click (function ( )
 			{
 				var cellId = $(this).attr ("id").charAt (5);
 
-				$.ajax (
+				if (gameEnded == false)
 				{
-					type: 'get',
-					url: '/clickcell',
-					data: 'state=' + gameState + '&player=' + currentPlayer + '&cell=' + cellId
-				}).done (function (returnData)
-				{
-					var data = JSON.parse (returnData);
-					alert ('success - returned a javascript object:\nplayer: ' + data.player + '\nvalid: ' + data.valid + '\nendGame: ' + data.endGame);
-				}).fail (function (err)
-				{
-					alert ('failure - returned ' + err);
-				});
-			});
-		});
+					$.ajax (
+					{
+						type: 'get',
+						url: '/clickcell',
+						data: 'state=' + gameState.join ('') + '&player=' + currentPlayer + '&cell=' + cellId
+					}).done (function (jsonString)
+					{
+						var data = JSON.parse (jsonString);
 
-		$(document).ready(function(){
-			$("#btnReset").click(function(){
-				$('#cell-1').html('');
-				$('#cell-2').html('');
-				$('#cell-3').html('');
-				$('#cell-4').html('');
-				$('#cell-5').html('');
-				$('#cell-6').html('');
-				$('#cell-7').html('');
-				$('#cell-8').html('');
-				$('#cell-9').html('');
+						if (data.validMove == true)
+						{
+							gameState[cellId - 1] = currentPlayer;
+							$('#cell-' + cellId).html (currentPlayer);
+
+							if (data.endGame == 1)
+							{
+								alert ('player ' + currentPlayer + ' won!');
+								gameEnded = true;
+							}
+							else if (data.endGame == 2)
+							{
+								alert ('No one won!');
+								gameEnded = true;
+							}
+							else
+								currentPlayer = data.nextPlayer;
+						}
+					}).fail (function (err)
+					{
+						alert ('failure - returned ' + err);
+					});
+				}
+			});
+
+			$("#btnReset").click (function ( )
+			{
+				gameState = ['0', '0', '0', '0', '0', '0', '0', '0', '0'];
+				gameEnded = false;
+				currentPlayer = 'X';
+
+				$('#cell-1').html ('');
+				$('#cell-2').html ('');
+				$('#cell-3').html ('');
+				$('#cell-4').html ('');
+				$('#cell-5').html ('');
+				$('#cell-6').html ('');
+				$('#cell-7').html ('');
+				$('#cell-8').html ('');
+				$('#cell-9').html ('');
 			});
 		});
 		</script>
