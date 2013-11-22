@@ -20,7 +20,7 @@ script:
 
 after_script: 
   - export STAGING_SERVER=http://spacestallions-staging.herokuapp.com/
-  - sh bin/selenium_test_xvfb
+  - mvn test-compile failsafe:integration-test failsafe:verify
  
 after_success:
  - mvn test jacoco:report coveralls:jacoco 
