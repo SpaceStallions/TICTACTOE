@@ -8,17 +8,21 @@ public class TicTacToe
 {
     // Switches player between X and O
     // If input is X, O is returned, and if input is O, X is returned
-    public static char switchPlayer (char currentPlayer)
+    public static char switchPlayer(char currentPlayer)
     {
         if (currentPlayer == 'X')
+        {
             return 'O';
+        }
         else
+        {
             return 'X';
+        }
     }
 
     // Detects whether the game has ended after this move is made
     // Returns 1 if the current player has won, 2 if there is a tie and 0 if the game has not ended
-    public static int detectEndGame (char[] gameState)
+    public static int detectEndGame(char[] gameState)
     {
         // Let's scan over all the possible ways to win in Tic Tac Toe
         if (((gameState[0] == gameState[1]) && (gameState[1] == gameState[2]) && gameState[2] != '0')
@@ -37,7 +41,9 @@ public class TicTacToe
         for (int i = 0 ; i < 9 ; i++)
         {
             if (gameState[i] == '0')
+            {
                 return 0;   // Nope, there is an unused cell left
+            }
         }
 
         // Yup, it's a tie
@@ -45,7 +51,7 @@ public class TicTacToe
     }
 
     // The entry point of the game logic, this is called from the /clickcell route below
-    public static Object clickCell (char[] gameState, char player, int cellNumber)
+    public static Object clickCell(char[] gameState, char player, int cellNumber)
     {
         boolean validMove = false;
         int endGame = 0;
@@ -55,9 +61,9 @@ public class TicTacToe
             validMove = true;
             gameState[cellNumber - 1] = player;
 
-            endGame = detectEndGame (gameState);
+            endGame = detectEndGame(gameState);
 
-            player = switchPlayer (player);
+            player = switchPlayer(player);
         }
 
         String json = "{ \"nextPlayer\": \"" + String.valueOf (player) + "\", \"validMove\": " + String.valueOf (validMove) + ", \"endGame\": " + String.valueOf (endGame) + " }";
@@ -65,10 +71,10 @@ public class TicTacToe
         return json;
     }
 
-    public static void main (String[] args)
+    public static void main(String[] args)
     {
         // Set location of static files
-        staticFileLocation ("/public");
+        staticFileLocation("/public");
 
         // Check for an environment variable "PORT" to set the listening port
         // if environment variable is not found the port is set to 4567
@@ -85,7 +91,7 @@ public class TicTacToe
         get (new Route ("/clickcell")
         {
             @Override
-            public Object handle (Request req, Response res)
+            public Object handle(Request req, Response res)
             {
                 char[] gameState = req.queryParams("state").toCharArray();
                 char player = req.queryParams("player").charAt(0);
