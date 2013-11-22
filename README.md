@@ -65,8 +65,6 @@ TICTACTOE is now ready to be built.
 ## 6. Compile the TICTACTOE
 
     mvn package
-	
-## 7. Selenium test suite
 
 The resulting binaries will be built in the "target" directory
 

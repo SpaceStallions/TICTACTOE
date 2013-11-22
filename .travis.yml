@@ -38,9 +38,15 @@ notifications:
     on_failure: always
 
 deploy:
-  provider: heroku
-  api_key:
-    secure: RCFqAPCIh2nUVNI2v/es2QKLuXtQzJlVMWceV/oefecGfPRRIOB8nxk5FLgUwSdzXrm6gkOXkBhWhWtQpdmo1Eb9nBGp1Eaq9z0pm2j9E80UIejh04d+Jw/D6fuWCfx0g7Psj0kcU/usQrC4W+c2EzAT5XwKEzrY5n5vKbaxeAM=
-  app: spacestallions-staging
-  on:
+  - provider: heroku
+    api_key:
+      secure: RCFqAPCIh2nUVNI2v/es2QKLuXtQzJlVMWceV/oefecGfPRRIOB8nxk5FLgUwSdzXrm6gkOXkBhWhWtQpdmo1Eb9nBGp1Eaq9z0pm2j9E80UIejh04d+Jw/D6fuWCfx0g7Psj0kcU/usQrC4W+c2EzAT5XwKEzrY5n5vKbaxeAM=
+    app: spacestallions-staging
+    on:
+    repo: SpaceStallions/TICTACTOE	 
+  - provider: heroku
+    api_key:
+      secure: qNyw8lFeoUUADp1KQifnqm/wCtTsfX1T00rT3JBgeJmyE45hXKdG1aEMSgBlMVq1KgCix6LnmVGTKRdcg3RRY1ADj+tMUa9M+dhZ/i3EhRnq+L+wW019Zd44cJUqrnIfZ7etZe5ti/20UYqTGjm23WrQe69ijYT+eQtpHd4NMZk=
+    app: spacestallions
+    on:
     repo: SpaceStallions/TICTACTOE
