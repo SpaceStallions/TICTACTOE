@@ -12,11 +12,15 @@ branches:
   only:
   - master
 
-script: mvn clean package compile test
+script: 
+  - mvn clean 
+  - mvn compile
+  - mvn package 
+  - mvn test
 
 after_script: 
- - export STAGING_SERVER=http://spacestallions-staging.herokuapp.com/
- - sh bin/selenium_test_xvfb
+  - export STAGING_SERVER=http://spacestallions-staging.herokuapp.com/
+  - sh bin/selenium_test_xvfb
  
 after_success:
  - mvn test jacoco:report coveralls:jacoco 
@@ -32,7 +36,7 @@ notifications:
     - arnarjonasson@gmail.com
     on_success: change
     on_failure: always
-    
+
 deploy:
   provider: heroku
   api_key:
