@@ -122,6 +122,14 @@
 				  </execution>
 				</executions>
 			</plugin>
+			<plugin>
+				<groupId>org.eluder.coveralls</groupId>
+				<artifactId>coveralls-maven-plugin</artifactId>
+				<version>2.0.1</version>
+				<configuration>
+					<repoToken>ZU9IPBNsPNUaZ88MX18THUQmgB3fc2Qn2</repoToken>
+				</configuration>
+			</plugin>
 			<!--plugin for Jacoco (code coverage) -->
 			<plugin> 
 				<groupId>org.jacoco</groupId>

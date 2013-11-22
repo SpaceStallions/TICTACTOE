@@ -1,7 +1,9 @@
 language: java
+
 jdk:
 - openjdk7
-- oraclejdk7
+#- oraclejdk7
+
 branches:
   only:
   - master
@@ -10,6 +12,9 @@ script: mvn clean package compile test
 after_script: 
  - export STAGING_SERVER=http://spacestallions-staging.herokuapp.com/
  - sh bin/selenium_test_xvfb
+ 
+after_success:
+ - mvn clean package jacoco:report coveralls:jacoco 
  
 notifications:
   email:
