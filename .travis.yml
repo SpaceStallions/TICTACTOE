@@ -14,7 +14,7 @@ after_script:
  - sh bin/selenium_test_xvfb
  
 after_success:
- - mvn clean package jacoco:report coveralls:jacoco 
+ - mvn test jacoco:report coveralls:jacoco 
  
 notifications:
   email:
