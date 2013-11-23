@@ -6,6 +6,10 @@ import spark.*;
 
 public class TicTacToe
 {
+	static final int GAME_CONTINUE = 0;
+	static final int GAME_WIN = 1;
+	static final int GAME_TIE = 2;
+
     // Switches player between X and O
     // If input is X, O is returned, and if input is O, X is returned
     public static char switchPlayer(char currentPlayer)
@@ -34,7 +38,7 @@ public class TicTacToe
         || ((gameState[2] == gameState[4]) && (gameState[4] == gameState[6]) && gameState[6] != '0')
         || ((gameState[0] == gameState[4]) && (gameState[4] == gameState[8]) && gameState[8] != '0'))
         {
-            return 1;
+            return GAME_WIN;
         }
 
         // No one has won yet? Let's see if there is a tie...
@@ -42,12 +46,12 @@ public class TicTacToe
         {
             if (gameState[i] == '0')
             {
-                return 0;   // Nope, there is an unused cell left
+                return GAME_CONTINUE;   // Nope, there is an unused cell left
             }
         }
 
         // Yup, it's a tie
-        return 2;
+        return GAME_TIE;
     }
 
     // The entry point of the game logic, this is called from the /clickcell route below
