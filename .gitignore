@@ -6,6 +6,5 @@ target
 TICTACTOE.iml
 
 # Java Package Files #
-*.jar
 *.war
 *.ear

@@ -2,7 +2,10 @@
 package spacestallions.tictactoe;
 
 import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
+
 import org.junit.Test;
+import spark.Spark;
 
 public class TicTacToeTest
 {
@@ -46,4 +49,17 @@ public class TicTacToeTest
 	{
 		assertEquals (TicTacToe.switchPlayer('O'), 'X');
 	}
+
+    @Test
+    public void testSetupEnviroment()
+    {
+        assertTrue(TicTacToe.setupEnviroment());
+    }
+
+    @Test
+    public void testProcessRoute()
+    {
+        assertTrue(TicTacToe.routeRequest());
+    }
+
 }
