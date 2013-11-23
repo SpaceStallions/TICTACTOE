@@ -13,25 +13,50 @@ import static org.apache.commons.lang3.StringUtils.join;
 
 
 public class NewGame_andXONotPresentIT {
-	private Selenium selenium;
+	private WebDriver driver;
+    private String baseUrl;
+    private boolean acceptNextAlert = true;
+    private StringBuffer verificationErrors = new StringBuffer();
+
 
 	@Before
 	public void setUp() throws Exception {
 	
-		WebDriver driver = new FirefoxDriver();
-		String baseUrl = "http://spacestallions-staging.herokuapp.com/";
-		selenium = new WebDriverBackedSelenium(driver, baseUrl);
+		driver = new FirefoxDriver();
+        //baseUrl = System.getenv("STAGING_SERVER");
+        baseUrl = "http://spacestallions-staging.herokuapp.com/";
+        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 	}
 
 	@Test
 	public void testAssertNewGame_andXONotPresentIT() throws Exception {
-		selenium.click("id=btnReset");
-		assertFalse(selenium.isElementPresent("X"));
-		assertFalse(selenium.isElementPresent("O"));
+		driver.get(baseUrl);
+		driver.click("id=btnReset");
+		assertFalse(driver.isElementPresent("X"));
+		assertFalse(driver.isElementPresent("O"));
 	}
 
 	@After
-	public void tearDown() throws Exception {
-		selenium.stop();
-	}
+    public void tearDown() throws Exception 
+    {
+        driver.quit();
+        String verificationErrorString = verificationErrors.toString();
+        if (!"".equals(verificationErrorString)) 
+        {
+            fail(verificationErrorString);
+        }
+    }
+
+    private boolean isElementPresent(By by) 
+    {
+        try 
+        {
+            driver.findElement(by);
+            return true;
+        } 
+        catch (NoSuchElementException e) 
+        {
+            return false;
+        }
+    }
 }
