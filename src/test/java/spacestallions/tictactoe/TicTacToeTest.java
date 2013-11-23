@@ -67,6 +67,13 @@ public class TicTacToeTest
 	}
 
 	@Test
+	public void testEndGameTie()
+	{
+		String gameState1 = "121122211";
+		assertEquals (TicTacToe.detectEndGame(gameState1.toCharArray()), 2);
+	}
+
+	@Test
 	public void testPlayerSwitchToOne()
 	{
 		assertEquals (TicTacToe.switchPlayer('X'), 'O');
