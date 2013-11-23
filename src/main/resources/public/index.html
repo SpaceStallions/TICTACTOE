@@ -41,67 +41,67 @@
 		<input id="btnReset" type="submit" value="New game"/>
 
 		<script type="text/javascript">
-		$(document).ready (function ( )
+		$(document).ready (function( )
 		{
 			var gameState = ['0', '0', '0', '0', '0', '0', '0', '0', '0'];
 			var currentPlayer = 'X';
 			var gameEnded = false;
 
-			$("table tr td").click (function ( )
+			$("table tr td").click(function()
 			{
-				var cellId = $(this).attr ("id").charAt (5);
+				var cellId = $(this).attr("id").charAt(5);
 
 				if (gameEnded == false)
 				{
-					$.ajax (
+					$.ajax(
 					{
 						type: 'get',
 						url: '/clickcell',
-						data: 'state=' + gameState.join ('') + '&player=' + currentPlayer + '&cell=' + cellId
+						data: 'state=' + gameState.join('') + '&player=' + currentPlayer + '&cell=' + cellId
 					}).done (function (jsonString)
 					{
-						var data = JSON.parse (jsonString);
+						var data = JSON.parse(jsonString);
 
 						if (data.validMove == true)
 						{
 							gameState[cellId - 1] = currentPlayer;
-							$('#cell-' + cellId).html (currentPlayer);
+							$('#cell-' + cellId).html(currentPlayer);
 
 							if (data.endGame == 1)
 							{
-								alert ('player ' + currentPlayer + ' won!');
+								alert('player ' + currentPlayer + ' won!');
 								gameEnded = true;
 							}
 							else if (data.endGame == 2)
 							{
-								alert ('No one won!');
+								alert('No one won!');
 								gameEnded = true;
 							}
 							else
 								currentPlayer = data.nextPlayer;
 						}
-					}).fail (function (err)
+					}).fail (function(err)
 					{
-						alert ('failure - returned ' + err);
+						alert('failure - returned ' + err);
 					});
 				}
 			});
 
-			$("#btnReset").click (function ( )
+			$("#btnReset").click (function()
 			{
 				gameState = ['0', '0', '0', '0', '0', '0', '0', '0', '0'];
 				gameEnded = false;
 				currentPlayer = 'X';
 
-				$('#cell-1').html ('');
-				$('#cell-2').html ('');
-				$('#cell-3').html ('');
-				$('#cell-4').html ('');
-				$('#cell-5').html ('');
-				$('#cell-6').html ('');
-				$('#cell-7').html ('');
-				$('#cell-8').html ('');
-				$('#cell-9').html ('');
+				$('#cell-1').html('');
+				$('#cell-2').html('');
+				$('#cell-3').html('');
+				$('#cell-4').html('');
+				$('#cell-5').html('');
+				$('#cell-6').html('');
+				$('#cell-7').html('');
+				$('#cell-8').html('');
+				$('#cell-9').html('');
 			});
 		});
 		</script>
