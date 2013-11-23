@@ -11,6 +11,7 @@ before_install:
 branches:
   only:
   - master
+  - production
 
 script: 
   - mvn clean 
