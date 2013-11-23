@@ -34,7 +34,7 @@ public class AssertTitleIT
         caps.setCapability("version", "30");
         // Create the connection to Sauce Labs to run the tests
         this.driverSL = new RemoteWebDriver(
-                new URL("http://joezombie:c04b6180-7a6f-43e1-8b6f-0108ad993658@ondemand.saucelabs.com:80/wd/hub"),
+                new URL("http://spacestallions:8e0c8605-982f-4b17-8697-d3bec46d3599@ondemand.saucelabs.com:80/wd/hub"),
                 caps);
     }
 
