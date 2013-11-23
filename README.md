@@ -7,10 +7,12 @@
 Assignment for T-303-HUGB 2013-3
 
 # Run instructions
+
 The web application is accessed at:
 http://spacestallions.herokuapp.com/
 
- 
+
+
 ## Development manual
 
 Development platforms supported:
@@ -43,14 +45,27 @@ Create new variables or append the value if the variable already exists:
 
 ### Linux
 
-Nothing to do.
+#### Setup project in Linux:
 
+Install software:
+
+```
+sudo apt-get update 
+sudo apt-get install git maven2 openjdk-7-jdk xvfb
+```
+
+Setja inn breytur
+```
+export JAVA_HOME=/usr/lib/jvm/java-7-openjdk-amd64/
+export PATH=/usr/lib/jvm/java-7-openjdk-amd64/bin:$PATH
+```
 
 ## 4. Download the TICTACTOE source code
     
-	https://github.com/SpaceStallions/TICTACTOE/
+`git clone https://github.com/SpaceStallions/TICTACTOE/ TTT`
 
 ## 5. Resolve and install external libraries
+
 
 These are needed by the build process:
 	
@@ -59,17 +74,25 @@ These are needed by the build process:
 	* selenium		(tested on version 2.37.1)
 		    
 At this point all required software packages are present.
+
+In Linux, these dependencies will be automatically handled by Maven
+
 TICTACTOE is now ready to be built.
 
 
 ## 6. Compile the TICTACTOE
 
-    mvn package
+### Linux:
+From the project directory run:
+
+	`bin/compile`
 
 The resulting binaries will be built in the "target" directory
 
 
 ## Commit to main branch
+
+To commit to the main branch, you must add the repo via git.
 
 After the changes have been uploaded to the main github branch the following automated build process begins
 
