@@ -72,7 +72,18 @@ public class TicTacToe
     public static Boolean setupEnviroment()
     {
         try {
+            // Set location of static files
+            staticFileLocation("/public");
 
+            // Check for an environment variable "PORT" to set the listening port
+            // if environment variable is not found the port is set to 4567
+            String serverPort =  System.getenv("PORT");
+            if (serverPort == null || serverPort.isEmpty())
+            {
+                serverPort = "4567";
+            }
+
+            setPort(Integer.valueOf(serverPort));
 
         }
         catch (Exception err){
