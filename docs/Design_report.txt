@@ -1,25 +1,16 @@
 
-TODO: skrifa eitthvað "aðeins" formlegra...
+THE GAME DESIGN
 
-Dagur í lífi músarsmells á reit á mylluborði
+OUTLINE
 
-Hjá client:
-Notandi opnar index.html
-Vafrinn, með jQuery, bindur click() fall við alla 9 reitina á mylluborðinu
-Notandi smellir á einn af 9 reitunum
-Þá fer click() fallið í gang client-side
-id attribute reitsins sem smellt var á er afritað í breytu cellId (cellId getur verið frá 1 upp í 9)
-Búið er til AJAX kall á /clickcell með gögnum um núverandi stöðu leiksins
-Dæmi: localhost:4567/clickcell?state=000000000&player=1&cell=1
-Sérhvert 0 í state strengnum merkir auðan reit, 1 merkir leikmaður 1 og 2 merkir leikmaður 2, player merkir þann leikmann sem smellti á reitinn, og cell merkir þann reit sem smellt var á
+The game, SpaceStallions Tic Tac Toe, is a web application. It has a client and a server component. The client is usually a web browser and the server is a program listening to HTTP requests, by default on port 4567. When the client sends a request to the IP address of the host running the server program on the correct port, it will receive the game in the form of a simple web page, and can play right away by clicking on the cells.
 
-Fer yfir á server (Java forritið):
-Ef server forritið er að hlusta á porti 4567 þá mun það fá þessi HTTP skilaboð og kalla á /clickcell route fallið
-   (Ef server forritið er ekki í gangi þá mun AJAX fyrirspurnin kalla á fail() fallið)
-Svo er kallað á static fallið clickCell úr /clickcell route fallinu með 3 færibreytum sem lýsa stöðu leiksins
-clickCell() er entry point á server-side lógíkinni fyrir leikinn, þar er athugað hvort notandinn hafi smellt á reit sem er auður, athugað hvort komin er upp vinningsstaða eða jafntefli og svissað á milli leikmanna
-clickCell() að lokum skilar JSON streng sem inniheldur þær upplýsingar sem clientinn þarf að vita til að uppfæra leikinn client-side
+CLIENT
 
-Aftur til clients:
-done() fallið í AJAX kallinu er virkjað með JSON strenginn sem viðfang
-Það greip JSON strenginn og parserar hann yfir í javascript hlut sem svo er hægt að nota til að uppfæra stöðu leiksins
+The client side of the game is a simple web page interacted with on a web browser. The client side is a minimalistic one, there is very little game logic other than updating the web interface using AJAX. Each cell has its own unique id attribute and is tied to a javascript click function. Once the user clicks a cell (assuming the game is not over yet) the current state of the game, current player and the ID number of the cell that was clicked are packaged into a request to the server via an AJAX call.
+
+Skipping the server part for now, what the client will receive back from the server is a JSON string containing a few values: nextPlayer (if currentPlayer is X, then nextPlayer is O, for example), validMove (true or false) and endGame (0 if the game should continue, 1 if the current player won and 2 if there is a tie). Using these values the state of the game is updated on the client side using javascript.
+
+SERVER
+
+When the server program receives the AJAX call from the client mentioned above it will put the HTTP parameters (the values we sent via the AJAX call) into variables, and pass these variables into the entry point of the game logic, clickCell(). Within this function we determine whether the move is valid, what end-game state the game is in, we switch to the next player and the function finishes by packing this info (valid move, next player and end-game state) into a JSON string and returning that back to the client.
