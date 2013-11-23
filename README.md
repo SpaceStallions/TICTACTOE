@@ -5,7 +5,7 @@
 
 Assignment for T-303-HUGB 2013-3
 
-# Run instructions
+## Run instructions
 
 The web application is accessible at:
 http://spacestallions.herokuapp.com/
@@ -76,8 +76,8 @@ sudo apt-get install git maven2 openjdk-7-jdk xvfb
 ### 2. Set environment variables
 
 ```
-export JAVA_HOME=/usr/lib/jvm/java-7-openjdk-amd64/
-export PATH=/usr/lib/jvm/java-7-openjdk-amd64/bin:$PATH
+export JAVA_HOME=/path/to/javajdk/
+export PATH=/path/to/javajdk/:$PATH
 ```
 
 ### 3. Download the TICTACTOE source code
