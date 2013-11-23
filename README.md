@@ -1,41 +1,45 @@
 ﻿TICTACTOE
 =========
-[![Build Status](https://travis-ci.org/SpaceStallions/TICTACTOE.png)](https://travis-ci.org/SpaceStallions/TICTACTOE) [![Coverage Status](https://coveralls.io/repos/SpaceStallions/TICTACTOE/badge.png)](https://coveralls.io/r/SpaceStallions/TICTACTOE)
-[![Selenium Test Status](https://saucelabs.com/browser-matrix/spacestallions.svg)](https://saucelabs.com/u/spacestallions)
-[![Coverage Status](https://coveralls.io/repos/SpaceStallions/TICTACTOE/badge.png)](https://coveralls.io/r/SpaceStallions/TICTACTOE)
+[![Build Status](https://travis-ci.org/SpaceStallions/TICTACTOE.png)](https://travis-ci.org/SpaceStallions/TICTACTOE) [![Coverage Status](https://coveralls.io/repos/SpaceStallions/TICTACTOE/badge.png)](https://coveralls.io/r/SpaceStallions/TICTACTOE)[![Selenium Test Status](https://saucelabs.com/browser-matrix/spacestallions.svg)](https://saucelabs.com/u/spacestallions)
 =========
 
 Assignment for T-303-HUGB 2013-3
 
 # Run instructions
 
-The web application is accessed at:
+The web application is accessible at:
 http://spacestallions.herokuapp.com/
 
+## Install and run locally
 
+Platform supported: Linux
 
-## Development manual
+Clone the repository:
+
+`git clone https://github.com/SpaceStallions/TICTACTOE/ TTT`
+
+To run the full batch of build tests and deploy locally:
+
+`bin/build_and_test`
+
+# Development manual
 
 Development platforms supported:
 * Windows
 * Linux
 
 This document describes how to build TICTACTOE from the source files.
-First all required software has to be installed:
 
-## 1. Download and install the Java JDK
+## Windows
 
-Note: the JRE is not enough.
-In order to build TICTACTOE, you need to have JAVA 1.7 (Earlier versions might work OK, but are not tested.)
+### 1. Setup required software
+
+[Git](https://help.github.com/articles/set-up-git)
+[Java JDK](http://www.oracle.com/technetwork/java/javase/downloads/index.html)
+[Maven](http://maven.apache.org/download.cgi)
 
 
-## 2. Download and extract Maven
-
-See http://maven.apache.org/download.html
-
-## 3. Set environment variables
-
-### Windows
+### 2. Set environment variables
 
 Create new variables or append the value if the variable already exists:
 
@@ -44,29 +48,13 @@ Create new variables or append the value if the variable already exists:
 * Level: User, variable `M2`, value: `%M2_HOME%\bin`
 * Level: User, variable `PATH`, value `%M2%`
 
-### Linux
-
-#### Setup project in Linux:
-
-Install software:
-
-```
-sudo apt-get update 
-sudo apt-get install git maven2 openjdk-7-jdk xvfb
-```
-
-Setja inn breytur
-```
-export JAVA_HOME=/usr/lib/jvm/java-7-openjdk-amd64/
-export PATH=/usr/lib/jvm/java-7-openjdk-amd64/bin:$PATH
-```
-
-## 4. Download the TICTACTOE source code
+### 3. Download the TICTACTOE source code
     
+Use git-bash to clone the repository:
+
 `git clone https://github.com/SpaceStallions/TICTACTOE/ TTT`
 
-## 5. Resolve and install external libraries
-
+### 4. Resolve and install external libraries
 
 These are needed by the build process:
 	
@@ -76,20 +64,50 @@ These are needed by the build process:
 		    
 At this point all required software packages are present.
 
+## Linux
+
+### 1. Setup required software
+
+```
+sudo apt-get update 
+sudo apt-get install git maven2 openjdk-7-jdk xvfb
+```
+
+### 2. Set environment variables
+
+```
+export JAVA_HOME=/usr/lib/jvm/java-7-openjdk-amd64/
+export PATH=/usr/lib/jvm/java-7-openjdk-amd64/bin:$PATH
+```
+
+### 3. Download the TICTACTOE source code
+ 
+`git clone https://github.com/SpaceStallions/TICTACTOE/ TTT`
+
+### 4. Resolve and install external libraries
+
 In Linux, these dependencies will be automatically handled by Maven
+
 
 TICTACTOE is now ready to be built.
 
+------
 
-## 6. Compile the TICTACTOE
 
-### Linux:
+# Compile and Package TICTACTOE
+
+## Windows:
+
 From the project directory run:
 
-	`bin/compile`
+`bin\package`
+
+## Linux:
+From the project directory run:
+
+	`bin/package`
 
 The resulting binaries will be built in the "target" directory
-
 
 ## Commit to main branch / deploy to staging
 
