@@ -50,4 +50,16 @@ public class TicTacToeTest
 		assertEquals (TicTacToe.switchPlayer('O'), 'X');
 	}
 
+    @Test
+    public void testSetupEnviroment()
+    {
+        assertTrue(TicTacToe.setupEnviroment());
+    }
+
+    @Test
+    public void testProcessRoute()
+    {
+        assertTrue(TicTacToe.routeRequest());
+    }
+
 }
