@@ -39,11 +39,8 @@ notifications:
 
 deploy:
   provider: heroku
-    api_key:
-	  master:
-        secure: RCFqAPCIh2nUVNI2v/es2QKLuXtQzJlVMWceV/oefecGfPRRIOB8nxk5FLgUwSdzXrm6gkOXkBhWhWtQpdmo1Eb9nBGp1Eaq9z0pm2j9E80UIejh04d+Jw/D6fuWCfx0g7Psj0kcU/usQrC4W+c2EzAT5XwKEzrY5n5vKbaxeAM=
-	  production:	   
-		secure: qNyw8lFeoUUADp1KQifnqm/wCtTsfX1T00rT3JBgeJmyE45hXKdG1aEMSgBlMVq1KgCix6LnmVGTKRdcg3RRY1ADj+tMUa9M+dhZ/i3EhRnq+L+wW019Zd44cJUqrnIfZ7etZe5ti/20UYqTGjm23WrQe69ijYT+eQtpHd4NMZk=		
+    api_key:	 
+        secure: RCFqAPCIh2nUVNI2v/es2QKLuXtQzJlVMWceV/oefecGfPRRIOB8nxk5FLgUwSdzXrm6gkOXkBhWhWtQpdmo1Eb9nBGp1Eaq9z0pm2j9E80UIejh04d+Jw/D6fuWCfx0g7Psj0kcU/usQrC4W+c2EzAT5XwKEzrY5n5vKbaxeAM=		
     app: 
 	master: spacestallions-staging
 	production: spacestallions
