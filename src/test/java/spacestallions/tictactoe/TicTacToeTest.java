@@ -49,5 +49,10 @@ public class TicTacToeTest
 	{
 		assertEquals (TicTacToe.switchPlayer('O'), 'X');
 	}
+    @Test
+    public void testGetPortFunction()
+    {
+        assertNotNull(TicTacToe.getPort());
+    }
 
 }
