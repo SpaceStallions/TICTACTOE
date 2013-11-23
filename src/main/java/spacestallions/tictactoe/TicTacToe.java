@@ -67,7 +67,14 @@ public class TicTacToe
 
         return json;
     }
-
+    public static String getPort() {
+        String serverPort =  System.getenv("PORT");
+        if (serverPort == null || serverPort.isEmpty())
+        {
+            serverPort = "4567";
+        }
+        return serverPort;
+    }
 
     public static void main(String[] args)
     {
@@ -76,12 +83,7 @@ public class TicTacToe
 
         // Check for an environment variable "PORT" to set the listening port
         // if environment variable is not found the port is set to 4567
-        String serverPort =  System.getenv("PORT");
-        if (serverPort == null || serverPort.isEmpty())
-        {
-            serverPort = "4567";
-        }
-        setPort(Integer.valueOf(serverPort));
+        setPort(Integer.valueOf(getPort()));
 
         // This route is called through AJAX when a player clicks a cell in the game board
         // Returns a json string back to the done() function in the javascript part of index.html
