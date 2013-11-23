@@ -14,13 +14,13 @@ http://spacestallions.herokuapp.com/
 
 Platform supported: Linux
 
-Clone the repository:
+Download the game:
 
-`git clone https://github.com/SpaceStallions/TICTACTOE/ TTT`
+[TicTacToe](https://github.com/SpaceStallions/TICTACTOE/archive/1.0.tar.gz)
 
-To run the full batch of build tests and deploy locally:
+To run the game you need to enter the following command:
 
-`bin/build_and_test`
+`java -jar TICTACTOE-1.0`
 
 # Development manual
 
@@ -35,7 +35,9 @@ This document describes how to build TICTACTOE from the source files.
 ### 1. Setup required software
 
 [Git](https://help.github.com/articles/set-up-git)
+
 [Java JDK](http://www.oracle.com/technetwork/java/javase/downloads/index.html)
+
 [Maven](http://maven.apache.org/download.cgi)
 
 
@@ -94,18 +96,18 @@ TICTACTOE is now ready to be built.
 ------
 
 
-# Compile and Package TICTACTOE
+## Compile and Package TICTACTOE
 
-## Windows:
+### Windows:
 
 From the project directory run:
 
 `bin\package`
 
-## Linux:
+### Linux:
 From the project directory run:
 
-	`bin/package`
+`bin/package`
 
 The resulting binaries will be built in the "target" directory
 
