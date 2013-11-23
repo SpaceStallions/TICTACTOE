@@ -90,16 +90,23 @@ From the project directory run:
 The resulting binaries will be built in the "target" directory
 
 
-## Commit to main branch
+## Commit to main branch / deploy to staging
 
 To commit to the main branch, you must add the repo via git.
 
 After the changes have been uploaded to the main github branch the following automated build process begins
 
-1. Travis-CI will build the project, the status of the progress can be monitred at:
+1. Travis-CI will build the project, the status of the progress can be monitored at:
 https://travis-ci.org/SpaceStallions/TICTACTOE
-2. Travis-CI compiles the code and runs unit-tests, if succesful Travis-CI will upload the application
+2. Travis-CI compiles the code and runs unit-tests, if successful Travis-CI will upload the application
 to heroku staging server at http://spacestallions-staging.herokuapp.com/
 3. Selenium is used for end-to-end testing on the staging application
-4. If all steps are succesful so far the application is uploaded to the production site at
+
+## Deloy to production
+1. When the staging environment is deemed to be ready for production, the build branch is merged with the
+production build at github.
 http://spacestallions.herokuapp.com/
+2. Travis-CI will build the project, the status of the progress can be monitored at:
+https://travis-ci.org/SpaceStallions/TICTACTOE
+3. Travis-CI compiles the code and runs unit-tests, if successful Travis-CI will upload the application
+to heroku production server at http://spacestallions.herokuapp.com/
