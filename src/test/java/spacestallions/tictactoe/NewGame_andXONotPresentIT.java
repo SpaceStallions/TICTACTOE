@@ -12,7 +12,7 @@ import java.util.regex.Pattern;
 import static org.apache.commons.lang3.StringUtils.join;
 
 
-public class AssertNewGame_andXONotPresentIT {
+public class NewGame_andXONotPresentIT {
 	private Selenium selenium;
 
 	@Before
