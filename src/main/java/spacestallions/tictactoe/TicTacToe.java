@@ -14,14 +14,7 @@ public class TicTacToe
     // If input is X, O is returned, and if input is O, X is returned
     public static char switchPlayer(char currentPlayer)
     {
-        if (currentPlayer == 'X')
-        {
-            return 'O';
-        }
-        else
-        {
-            return 'X';
-        }
+        return (currentPlayer == 'X' ? 'X' : 'O');
     }
 
     // Detects whether the game has ended after this move is made
