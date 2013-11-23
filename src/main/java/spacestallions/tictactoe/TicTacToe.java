@@ -68,58 +68,32 @@ public class TicTacToe
         return json;
     }
 
-    // Setup the environment
-    public static Boolean setupEnviroment()
-    {
-        try {
-            // Set location of static files
-            staticFileLocation("/public");
-
-            // Check for an environment variable "PORT" to set the listening port
-            // if environment variable is not found the port is set to 4567
-            String serverPort =  System.getenv("PORT");
-            if (serverPort == null || serverPort.isEmpty())
-            {
-                serverPort = "4567";
-            }
-
-            setPort(Integer.valueOf(serverPort));
-
-        }
-        catch (Exception err){
-            System.out.println("Error occurred while setting up the environment, error: " + err.getMessage());
-            return false;
-        }
-        return true;
-    }
-
-    // This route is called through AJAX when a player clicks a cell in the game board
-    // Returns a json string back to the done() function in the javascript part of index.html
-    public static boolean routeRequest(){
-        try {
-            get (new Route ("/clickcell")
-            {
-                @Override
-                public Object handle(Request req, Response res)
-                {
-                    char[] gameState = req.queryParams("state").toCharArray();
-                    char player = req.queryParams("player").charAt(0);
-                    int cellNumber = Integer.valueOf(req.queryParams("cell"));
-
-                    return clickCell(gameState, player, cellNumber);
-                }
-            });
-        }
-        catch (Exception err){
-            System.out.println("Error occurred while processing a request route for clickcell, error: " + err.getMessage());
-            return false;
-        }
-        return true;
-    }
-
     public static void main(String[] args)
     {
-        setupEnviroment();
-        routeRequest();
+        // Set location of static files
+        staticFileLocation("/public");
+
+        // Check for an environment variable "PORT" to set the listening port
+        // if environment variable is not found the port is set to 4567
+        String serverPort =  System.getenv("PORT");
+        if (serverPort == null || serverPort.isEmpty())
+        {
+            serverPort = "4567";
+        }
+
+        setPort(Integer.valueOf(serverPort));
+
+        get (new Route ("/clickcell")
+        {
+            @Override
+            public Object handle(Request req, Response res)
+            {
+                char[] gameState = req.queryParams("state").toCharArray();
+                char player = req.queryParams("player").charAt(0);
+                int cellNumber = Integer.valueOf(req.queryParams("cell"));
+
+                return clickCell(gameState, player, cellNumber);
+            }
+        });
     }
 }
