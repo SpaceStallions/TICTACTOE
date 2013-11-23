@@ -12,4 +12,4 @@ Assignment for T-303-HUGB 2013-3
 If you want to install and run the game locally read [these instructions.](docs/Admin_manual.md)
 
 
-If you want to build the file yourself read [these instructions.](docs/Dev_manual.md)
+If you want to build the project yourself read [these instructions.](docs/Dev_manual.md)
